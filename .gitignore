@@ -1,0 +1,17 @@
+.project
+.settings/
+*/target/
+*/generated/
+*/.settings/
+*/.classpath
+*/.project
+*/src/main/java/META-INF/
+target/
+*DS_Store
+logs/*.log
+nohup.out
+bin/
+.idea/
+*.iml
+*.log
+*.exe
