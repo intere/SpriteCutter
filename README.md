@@ -5,3 +5,6 @@ This Repo is based on a tool that I found here: http://www.vg-resource.com/post-
 Project Page: http://csdgn.org/projects/sprite-cutter
 
 The actual developer of this project is Robert Maupin ([Chase-san](https://github.com/Chase-san))
+
+
+![Screenshot](https://github.com/intere/SpriteCutter/blob/master/assets/screenshot.png?raw=true)
