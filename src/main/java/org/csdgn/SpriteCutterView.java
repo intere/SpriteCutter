@@ -1,30 +1,14 @@
 package org.csdgn;
 
-import java.awt.BorderLayout;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
-import javax.swing.BoxLayout;
-import javax.swing.border.BevelBorder;
-import javax.swing.JCheckBox;
-import javax.swing.JSplitPane;
-import java.awt.Dimension;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-
 import org.csdgn.io.UnsupportedFileTypeException;
 import org.csdgn.swing.ArrayListModel;
 import org.csdgn.swing.ThumbnailListCellRenderer;
-import javax.swing.ListSelectionModel;
-import javax.swing.JButton;
-import javax.swing.JTextField;
+
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 
 /**
  * The thing you see when you start the program
@@ -38,7 +22,7 @@ public class SpriteCutterView extends JFrame {
 	private SpriteCutterController controller;
 	protected JTextField exportTarget;
 	protected ArrayListModel previewModel = new ArrayListModel();
-	protected JList previewList;
+	protected JList<Icon> previewList;
 	private JButton btnExportBrowse;
 	private JButton btnExportToFile;
 	protected JFileChooser importChooser;
@@ -112,7 +96,7 @@ public class SpriteCutterView extends JFrame {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
-		previewList = new JList();
+		previewList = new JList<Icon>();
 		previewList.setToolTipText("This is a preview pane, for previewing what the cut sprites will look like.");
 		previewList.setModel(previewModel);
 		previewList.setLayoutOrientation(JList.HORIZONTAL_WRAP);

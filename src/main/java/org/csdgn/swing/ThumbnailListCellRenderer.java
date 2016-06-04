@@ -1,17 +1,9 @@
 package org.csdgn.swing;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import javax.swing.Icon;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.ListCellRenderer;
-import javax.swing.UIManager;
+import javax.swing.*;
+import java.awt.*;
 
-public class ThumbnailListCellRenderer extends JComponent implements ListCellRenderer {
+public class ThumbnailListCellRenderer extends JComponent implements ListCellRenderer<Icon> {
 	private static final long serialVersionUID = 7809286388638138365L;
 
 	private JLabel label;
@@ -25,7 +17,7 @@ public class ThumbnailListCellRenderer extends JComponent implements ListCellRen
 	}
 	
 	@Override
-	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+	public Component getListCellRendererComponent(JList<? extends Icon> list, Icon value, int index, boolean isSelected, boolean cellHasFocus) {
 		
 		Color background;
 		Color foreground;
@@ -42,15 +34,14 @@ public class ThumbnailListCellRenderer extends JComponent implements ListCellRen
 		label.setBackground(background);
 		label.setForeground(foreground);
 
-		if(value instanceof Icon) {
-			Icon ico = (Icon)value;
-			label.setIcon(ico);
-			
-			Dimension d = new Dimension(ico.getIconWidth()+8,ico.getIconHeight()+8);
-			setMaximumSize(d);
-			setPreferredSize(d);
-		}
+		label.setIcon(value);
+
+		Dimension d = new Dimension(value.getIconWidth()+8,value.getIconHeight()+8);
+		setMaximumSize(d);
+		setPreferredSize(d);
 		
 		return this;
 	}
+
+
 }

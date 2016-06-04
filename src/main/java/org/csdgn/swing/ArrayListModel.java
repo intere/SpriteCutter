@@ -5,12 +5,13 @@ import java.util.HashSet;
 import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
+import javax.swing.Icon;
 
-public class ArrayListModel implements ListModel {
-	private ArrayList<Object> list = new ArrayList<Object>();
-	private HashSet<ListDataListener> listeners = new HashSet<ListDataListener>();
+public class ArrayListModel implements ListModel<Icon> {
+	private ArrayList<Icon> list = new ArrayList<>();
+	private HashSet<ListDataListener> listeners = new HashSet<>();
 	
-	public void add(Object obj) {
+	public void add(Icon obj) {
 		list.add(obj);
 		int pos = list.size() - 1;
 		fireAddChange(new ListDataEvent(this,ListDataEvent.INTERVAL_ADDED,pos,pos));
@@ -52,7 +53,7 @@ public class ArrayListModel implements ListModel {
 	}
 
 	@Override
-	public Object getElementAt(int index) {
+	public Icon getElementAt(int index) {
 		return list.get(index);
 	}
 
