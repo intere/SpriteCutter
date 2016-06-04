@@ -4,13 +4,14 @@
   <groupId>org.csdgn</groupId>
   <artifactId>sprite-cutter</artifactId>
   <version>1.5</version>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
   <name>Sprite Cutter</name>
 
   <properties>
     <!-- General Settings -->
     <java.version>1.7</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <exec.mainClass>org.csdgn.SpriteCutter</exec.mainClass>
   </properties>
 
   <dependencies>
@@ -20,38 +21,10 @@
       <version>4.12</version>
     </dependency>
   </dependencies>
-  
+
   <build>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>2.6</version>
-          <executions>
-            <execution>
-              <id>unpack-zip</id>
-              <phase>package</phase>
-              <goals>
-                <goal>unpack-dependencies</goal>
-              </goals>
-              <configuration>
-                <artifactItems>
-                  <artifactItem>
-                    <groupId>com.newrelic.agent.java</groupId>
-                    <artifactId>newrelic-java</artifactId>
-                    <version>${newrelic.version}</version>
-                    <type>zip</type>
-                    <overWrite>true</overWrite>
-                    <outputDirectory>target</outputDirectory>
-                    <destFileName>newrelic</destFileName>
-                  </artifactItem>
-                </artifactItems>
-                <outputDirectory>${user.home}/cots/newrelic</outputDirectory>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -95,6 +68,40 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>${exec.mainClass}</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <!-- Build an executable JAR -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>${exec.mainClass}</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+
   </build>
 
 
